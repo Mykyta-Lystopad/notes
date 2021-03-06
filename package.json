@@ -1,0 +1,29 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "Notes for developers",
+  "main": "index.js",
+  "scripts": {
+    "serve": "parcel src/index.html -p 8100 --open",
+    "build": "build src/index.html --no-source-map"
+  },
+  "keywords": [
+    "Dev",
+    "notes",
+    "js",
+    "javascript",
+    "angular",
+    "react",
+    "vue",
+    "pure",
+    "js"
+  ],
+  "author": "Nikita Listopad <niktoring77@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "components": "^0.1.0"
+  }
+}
