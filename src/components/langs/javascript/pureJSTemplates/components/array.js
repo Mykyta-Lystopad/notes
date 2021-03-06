@@ -1,10 +1,37 @@
 import {mainBtn} from "../../../../mainTemp";
 import {componentsOfLang, frameWorks, mainLanguages} from "../../../../models";
 import {classes} from "./classes";
-import {javaScript} from "../../javascript";
 import {dataTypes} from "./dataTypes";
+import {pureJS} from "../pureJS";
+
+const appTemp = document.querySelector('#app')
 
 export function array(){
+
+    arrayJsTemplate()
+
+    const compBtn = document.querySelectorAll('.btn')
+    compBtn.forEach(comp=> {
+        comp.addEventListener('click', () => {
+            console.log(comp)
+            const arr = [
+                {name:'Типы данных',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); dataTypes()}},
+                {name:'Операторы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
+                {name:'Циклы',get value(){ mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
+                {name:'Функции',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
+                {name:'Массивы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
+                {name:'Обьекты',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
+                {name:'Классы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
+                {name:'Back',get value(){mainBtn(frameWorks('JavaScript').frameWorks.value); pureJS()}},
+            ]
+            arr.forEach(item => item.name === comp.innerHTML
+                ? (appTemp.innerHTML = '', item.value)
+                : false)
+        })
+    })
+}
+
+function arrayJsTemplate(){
     const arr = `<div class="content">
                 <div class="row">
                     <div class="col-sm">
@@ -95,26 +122,6 @@ export function array(){
                 </div>
             </div>`
 
-    const appTemp = document.querySelector('#app')
     appTemp.insertAdjacentHTML('beforeend', arr)
 
-    const compBtn = document.querySelectorAll('.btn')
-    compBtn.forEach(comp=> {
-        comp.addEventListener('click', () => {
-            console.log(comp)
-            const arr = [
-                {name:'Типы данных',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); dataTypes()}},
-                {name:'Операторы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
-                {name:'Циклы',get value(){ mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
-                {name:'Функции',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
-                {name:'Массивы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
-                {name:'Обьекты',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); array()}},
-                {name:'Классы',get value(){mainBtn(componentsOfLang('JavaScript', 'PureJS')); classes()}},
-                {name:'Back',get value(){mainBtn(frameWorks('JavaScript').frameWorks.value); javaScript()}},
-            ]
-            arr.forEach(item => item.name === comp.innerHTML
-                ? (appTemp.innerHTML = '', item.value)
-                : false)
-        })
-    })
 }

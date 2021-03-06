@@ -6,18 +6,10 @@ import {javaScript} from "../javascript";
 import {dataTypes} from "./components/dataTypes";
 
 const appTemp = document.querySelector('#app')
+
 export function pureJS() {
 
-    const pureJS = `<div class="content">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h3>PureJS</h3>
-                                <p>Пиши что хочешь)</p>
-                            </div>
-                        </div>
-                    </div>`
-
-    appTemp.insertAdjacentHTML('beforeend', pureJS)
+    pureJsTemplate()
 
     const compBtn = document.querySelectorAll('.btn')
     compBtn.forEach(comp=> {
@@ -38,5 +30,19 @@ export function pureJS() {
                 : false)
         })
     })
+
+}
+
+function pureJsTemplate(){
+    const pureJS = `<div class="content">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h3>PureJS</h3>
+                                <p>Пиши что хочешь)</p>
+                            </div>
+                        </div>
+                    </div>`
+
+    appTemp.insertAdjacentHTML('beforeend', pureJS)
 
 }

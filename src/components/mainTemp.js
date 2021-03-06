@@ -88,17 +88,35 @@ export function firstPageTemplate() {
                                                     <span>const <strong>isProd = process.env.NODE_ENV = 'production'</strong></span>
                                                     <span>const <strong>isDev = !isProd</strong></span>
                                                     <span> </span>
+                                                    <span>const <strong>jsLoaders</strong> = () => { </span>
+                                                    <span>  const loaders = [{</span>
+                                                    <span>      loader: "babel-loader",</span>
+                                                    <span>      options: {</span>
+                                                    <span>          presets: ['@babel/preset-env']</span>
+                                                    <span>      }</span>
+                                                    <span>  }]</span>
+                                                    <span>  if (isDev){</span>
+                                                    <span>      loaders.push('eslint-loader')</span>
+                                                    <span>  }</span>
+                                                    <span>  return loaders</span>
+                                                    <span>}</span>
+                                                    <span> </span>
                                                     <span>const <strong>filename = (ext) => isDev ? bundle.ext : bundle.[hash].ext</strong></span>
                                                     <span> </span>
                                                     <span><strong>module.exports</strong> = { </span>
+                                                    <span>          target: 'web', // for reloaded browser page webpack v.5 & up</span>
                                                     <span>          context: path.resolve(__dirname,'src'),</span>
                                                     <span>          mode: "development",</span>
-                                                    <span>          entry: './index.js',</span>
+                                                    <span>          entry: ['@babel/polyfill','./index.js',], // точка входа в приложение</span>
                                                     <span>          output: {</span>
                                                     <span>              filename: filename('js')</span>
                                                     <span>              path: path.resolve(__dirname,'dist')</span>
                                                     <span>          },</span>
                                                     <span><strong><a href="https://webpack.js.org/configuration/devtool/">devtool:</a></strong> isProd ? 'source-map' : false,</span>
+                                                    <span>        devServer: {</span>
+                                                    <span>          port: 3000,</span>
+                                                    <span>          hot: isDev,</span>
+                                                    <span>        }</span>
                                                     <span><strong>resolve:</strong> {</span>
                                                     <span>          extensions: ['.js'],</span>
                                                     <span>          alias: {</span>
@@ -113,15 +131,16 @@ export function firstPageTemplate() {
                                         </div>
                                         <div class="col-sm">
                                             <div class="img">
-                                                <img src="./images/webpack/img.png" alt="isProd-config">
+                                                <img src="./images/webpack/webpackConfig.png" alt="isProd-config">
                                             </div>
                                             <div class="img">
-                                                <img src="./images/webpack/img_3.png" alt="isProd-config">
+                                                <img src="./images/webpack/webpackConfig2.png" alt="isProd-config">
                                             </div>
-<!--                                        </div>-->
-<!--                                        <div class="col-sm">-->
                                             <div class="img">
-                                                <img src="./images/webpack/img_4.png" alt="isProd-config">
+                                                <img src="./images/webpack/webpackConfig3.png" alt="isProd-config">
+                                            </div>
+                                            <div class="img">
+                                                <img src="./images/webpack/webpackConfig4.png" alt="isProd-config">
                                             </div>
                                         </div>
 <!--                                        <div class="col-sm">-->
@@ -283,12 +302,7 @@ export function firstPageTemplate() {
                                                     <span>  rules: [{</span>
                                                     <span>      test: /\\.m?js$/,</span>
                                                     <span>      exclude: /node_modules/,</span>
-                                                    <span>      use: {</span>
-                                                    <span>          loader: "babel-loader",</span>
-                                                    <span>          options: {</span>
-                                                    <span>              presets: ['@babel/preset-env']</span>
-                                                    <span>          }</span>
-                                                    <span>      }</span>
+                                                    <span>      use: <strong>jsLoaders(),</strong></span>
                                                     <span>  }],</span>
                                                     <span>}</span>
                                                 </code>
@@ -308,9 +322,9 @@ export function firstPageTemplate() {
                                                     <span> rules: [{</span>
                                                     <span>     test: /\\.s[ac]ss$/i,</span>
                                                     <span>     use: [</span>
-                                                    <span>  MiniCssExtractPlugin.loader,</span>
-                                                    <span>     'css-loader',</span>
-                                                    <span>     'sass-loader',</span>
+                                                    <span>          MiniCssExtractPlugin.loader,</span>
+                                                    <span>          'css-loader',</span>
+                                                    <span>          'sass-loader',</span>
                                                     <span>  ]</span>
                                                     <span>},],</span>
                                                     <span>}</span>

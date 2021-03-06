@@ -6,7 +6,6 @@ function mainLanguages() {
     return buttonsArray.map(lang=>Object.create({},{name:{value:lang,enumerable:true}}))
 }
 
-
 export function frameWorks(selector){
     return  mainLanguages().map(lang=>{
         if (lang.name === selector) {
